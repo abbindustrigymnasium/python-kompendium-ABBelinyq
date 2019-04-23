@@ -46,12 +46,45 @@ import requests
 
 
 
+#Uppgift 6:3
 
+Artists = ["Ariana Grande",
+"Avicii",
+"Blink -182",
+"Brad Paisley",
+"Ed Sheeran",
+"Imagine Dragons",
+"Maroon 5",
+"Scorpions"]
 
+Url= "https://5hyqtreww2.execute-api.eu-north-1.amazonaws.com/artists/"
 
+nummer = 0
+for artistname in Artists:
+    print(artistname + " (ID)" + str(nummer))
+    nummer +=1
 
+selectid = int(input("Välj ett artist ID:"))
 
+choosenartist = Artists[selectid]
+print(choosenartist)
 
-
+r = requests.get(Url)
+response = r.json()
+# print(response)
+artistdic=response["artists"]
+#print(artistdic)
+artistfind = artistdic[selectid]
+#print(artistfind)
+searchid = artistfind["id"] 
+Infourl = "https://5hyqtreww2.execute-api.eu-north-1.amazonaws.com/artists/" + searchid 
+x = requests.get(Infourl)
+responsecool = x.json()
+#if (choosenartist == int(1)): 
+ #    print("F")
+   # print(responsecool)
+#else:
+    #print(responsecool)
+print(responsecool)
 
 
